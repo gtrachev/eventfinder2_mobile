@@ -4,7 +4,7 @@ import { UserTiersEnum } from "./userTiers";
 
 export enum AgeGroupEnum {
   all = "all",
-  adult = "adult",
+  over = "over",
 }
 
 export interface UserType {
@@ -80,7 +80,7 @@ export interface EventInputType {
   country: string;
   city: string;
   address: string;
-  date: string;
+  date: Date;
   time: string;
   interestCategories: string[];
   ageGroup: string;

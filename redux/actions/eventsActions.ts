@@ -50,24 +50,30 @@ export const getDetails = (event_id: string) => (dispatch: Dispatch) => {
 export const createEvent =
   (eventData: EventInputType) => (dispatch: Dispatch) => {
     eventActionWrap(dispatch, async () => {
-      const res = await axios.post<{
-        newEvent?: EventType;
-        err_message?: string;
-      }>(
-        "https://eventfinder2-server.herokuapp.com/api/events/create",
-        eventData,
-        withCredentials()
-      );
-      const newEvent = res.data.newEvent;
-      if (newEvent) {
-        dispatch({
-          type: eventActionTypes.CREATE_EVENT,
-          payload: newEvent,
-        });
-        getEvents(
-          "https://eventfinder2-server.herokuapp.com/api/events/popular_events"
-        )(dispatch);
-        getUser()(dispatch);
+      try {
+        console.log("res");
+        const res = await axios.post<{
+          newEvent?: EventType;
+          err_message?: string;
+        }>(
+          "https://eventfinder2-server.herokuapp.com/api/events/create",
+          eventData,
+          withCredentials()
+        );
+        console.log(res.data);
+        const newEvent = res.data.newEvent;
+        if (newEvent) {
+          dispatch({
+            type: eventActionTypes.CREATE_EVENT,
+            payload: newEvent,
+          });
+          getEvents(
+            "https://eventfinder2-server.herokuapp.com/api/events/popular_events"
+          )(dispatch);
+          getUser()(dispatch);
+        }
+      } catch (err) {
+        console.log(err);
       }
     });
   };
@@ -154,6 +160,7 @@ export const deleteReview =
           type: eventActionTypes.DELETE_EVENT,
           payload: deleted_id,
         });
+        getDetails(event_id)(dispatch);
       }
     });
   };

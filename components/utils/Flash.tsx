@@ -5,7 +5,6 @@ import { RootState } from "../../redux/rootReducer";
 import { View, StyleSheet } from "react-native";
 import AppText from "./AppText";
 import IconButton from "../../styles/styledComponents/Buttons/IconButton";
-import ExitButton from "../../styles/styledComponents/Buttons/ExitButton";
 import Icon from "react-native-vector-icons/Ionicons";
 import colors from "../../styles/colors";
 

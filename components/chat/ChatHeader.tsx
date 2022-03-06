@@ -1,10 +1,12 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
 import colors from "../../styles/colors";
-import Icon from "react-native-vector-icons/Ionicons";
 import type { MaterialTopTabNavigationProp } from "@react-navigation/material-top-tabs";
+import { ChatType, UserType } from "../../utils/types/modelTypes";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/rootReducer";
 import AppText from "../utils/AppText";
-const snimka2 = require("../../assets/snimka2.jpg");
+import Icon from "react-native-vector-icons/Ionicons";
 
 const ChatHeader: React.FC<{
   navigation: MaterialTopTabNavigationProp<
@@ -14,7 +16,9 @@ const ChatHeader: React.FC<{
     },
     "UserChats"
   >;
-}> = ({ navigation }) => {
+  chat: ChatType;
+}> = ({ navigation, chat }) => {
+  const userSlice = useSelector((state: RootState) => state.users);
   return (
     <View
       style={{
@@ -42,9 +46,24 @@ const ChatHeader: React.FC<{
             style={{ fontSize: 30, color: colors.primaryColor }}
           />
         </TouchableOpacity>
-        <Image source={snimka2} style={styles.profileImg} />
-        <AppText styles={{ color: colors.primaryColor, fontSize: 23 }}>
-          Chat name
+        <Image
+          source={{
+            uri:
+              chat.type === "personal"
+                ? chat.members.find(
+                    (member: UserType) =>
+                      member._id !== userSlice.currentUser._id
+                  )?.profileImage.path
+                : chat.event.images[0].path,
+          }}
+          style={styles.profileImg}
+        />
+        <AppText styles={{ color: colors.primaryColor, fontSize: 30 }}>
+          {chat.type === "personal"
+            ? chat.members.find(
+                (member: UserType) => member._id !== userSlice.currentUser._id
+              )?.username
+            : chat.event.name}
         </AppText>
       </View>
       <TouchableOpacity style={{ alignItems: "center" }}>

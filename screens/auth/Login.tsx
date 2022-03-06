@@ -1,16 +1,16 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
 import colors from "../../styles/colors";
-import AppText from "../../components/utils/AppText";
-import { Formik, Form, Field } from "formik";
-import Button from "../../styles/styledComponents/Buttons/Button";
-import EventFormInputField from "../../utils/formik/EventFormInputField";
+import { Formik, Field } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { loginUser } from "../../redux/actions/userActions";
 import { uiActionTypes } from "../../utils/types/actionTypes/uiActionTypes";
 import { useDispatch } from "react-redux";
 import Flash from "../../components/utils/Flash";
+import Button from "../../styles/styledComponents/Buttons/Button";
+import EventFormInputField from "../../utils/formik/EventFormInputField";
+import AppText from "../../components/utils/AppText";
 
 const Login: React.FC<{
   navigation: any;

@@ -68,6 +68,7 @@ export const getUserById = (user_id: string) => (dispatch: Dispatch) => {
       `https://eventfinder2-server.herokuapp.com/api/user/by_id/${user_id}`,
       withCredentials()
     );
+    console.log(res.data);
     dispatch({
       type: userActionTypes.GET_USER_BYID,
       payload: {
@@ -138,10 +139,7 @@ export const editUser =
       );
       const editedUser = res.data.editedUser;
       if (editedUser) {
-        dispatch({
-          type: userActionTypes.GET_USER,
-          payload: editedUser,
-        });
+        getUser()(dispatch);
         return;
       }
     });

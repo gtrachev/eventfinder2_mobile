@@ -1,15 +1,9 @@
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
-import Icon from "react-native-vector-icons/Ionicons";
 import colors from "../../styles/colors";
 import AppText from "../utils/AppText";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const DateField: React.FC<{
   date: Date;
@@ -54,7 +48,7 @@ const DateField: React.FC<{
             </AppText>
           ) : (
             <AppText styles={{ fontSize: 20 }}>
-              {date.toLocaleDateString()}
+              {new Date(date).toLocaleDateString()}
             </AppText>
           )}
           <Icon

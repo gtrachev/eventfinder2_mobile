@@ -1,10 +1,4 @@
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/Ionicons";
 import colors from "../../styles/colors";
@@ -22,7 +16,6 @@ const TimeField: React.FC<{
     const currentDate = selectedDate || new Date();
     setShow(Platform.OS === "ios");
     setTime(currentDate);
-    console.log(selectedDate);
     if (!timeTouched) {
       setTimeTouched(true);
     }
@@ -55,7 +48,7 @@ const TimeField: React.FC<{
             </AppText>
           ) : (
             <AppText styles={{ fontSize: 20 }}>
-              {time.getHours()}:{time.getMinutes()}
+              {new Date(time).toLocaleTimeString().slice(0, 5)}
             </AppText>
           )}
           <Icon

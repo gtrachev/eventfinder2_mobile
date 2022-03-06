@@ -5,16 +5,8 @@ export const createValidationSchema = yup.object().shape({
   price: yup.number().min(0).max(1000).required(),
   description: yup.string().max(1000).min(3).required(),
   address: yup.string().max(200).min(3).required(),
-  date: yup
-    .date()
-    .min(
-      new Date(),
-      `Date must be later than ${new Date().toLocaleDateString()}`
-    )
-    .required(),
   country: yup.string().max(100).min(3).required(),
   city: yup.string().max(100).min(3).required(),
-  time: yup.string().min(1).required(),
   ageGroup: yup.string().min(3).required(),
   interestCategories: yup
     .array()

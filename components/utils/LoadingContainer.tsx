@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import React from "react";
-const loadingImg = require("../../assets/interests/loading.gif");
 
 const LoadingContainer = () => {
   const loadingGif = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/loading_xsoft5.gif`;

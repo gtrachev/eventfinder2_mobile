@@ -17,8 +17,6 @@ export interface eventFormikInitialValuesType {
   country: string;
   city: string;
   address: string;
-  date: string;
-  time: string;
   interestCategories: string[];
   ageGroup: string;
   deletedImages?: string[] | [];

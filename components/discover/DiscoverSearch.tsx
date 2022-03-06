@@ -1,35 +1,48 @@
-import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { Platform, StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 import { Formik } from "formik";
-import Icon from "react-native-vector-icons/Ionicons";
 import colors from "../../styles/colors";
-import IconButton from "../../styles/styledComponents/Buttons/IconButton";
 import * as yup from "yup";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/rootReducer";
 import Button from "../../styles/styledComponents/Buttons/Button";
 import AppText from "../utils/AppText";
+import IconButton from "../../styles/styledComponents/Buttons/IconButton";
+import Icon from "react-native-vector-icons/Ionicons";
 
-const DiscoverSearch = () => {
+const DiscoverSearch: React.FC<{
+  navigation: any;
+  setSearchRegex: React.Dispatch<React.SetStateAction<RegExp | null>>;
+}> = ({ navigation, setSearchRegex }) => {
   const initialValues = {
     search: "",
   };
   const validationSchema = yup.object().shape({
     search: yup.string().required().min(1).max(250),
   });
+  const userSlice = useSelector((state: RootState) => state.users);
+  const handleSearch = (values: { search: string }) => {
+    const searchRegex = new RegExp(values.search, "gi");
+    setSearchRegex(searchRegex);
+  };
   return (
     <View style={styles.discoverSearchContainer}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values, actions) => console.log(values)}
+        onSubmit={(values, actions) => handleSearch(values)}
       >
         {({ handleChange, handleBlur, handleSubmit, values }) => (
           <View style={styles.searchInput}>
             <TextInput
               onChangeText={handleChange("search")}
+              onChange={() => handleSubmit()}
               onBlur={() => handleBlur("search")}
               value={values.search}
               placeholder={"Search..."}
+              multiline={true}
               style={{
+                width: 100,
                 flexGrow: 1,
                 fontSize: 18,
                 fontFamily: Platform.OS === "android" ? "Roboto" : "Arial",
@@ -52,6 +65,12 @@ const DiscoverSearch = () => {
           justifyContent: "center",
           borderRadius: 20,
         }}
+        onPress={() =>
+          navigation.navigate("AccountsList", {
+            accounts: userSlice.recommendedUsers,
+            title: "Find users",
+          })
+        }
       >
         <AppText
           styles={{

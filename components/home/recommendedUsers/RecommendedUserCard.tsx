@@ -1,31 +1,66 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import colors from "../../../styles/colors";
+import { handleFollow } from "../../../redux/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/rootReducer";
+import { UserType } from "../../../utils/types/modelTypes";
+import DangerButton from "../../../styles/styledComponents/Buttons/DangerButton";
 import AppText from "../../utils/AppText";
 import Button from "../../../styles/styledComponents/Buttons/Button";
 
-const RecommendedUserCard: React.FC<{ recommendedUser: any }> = ({
-  recommendedUser,
-}) => {
+const RecommendedUserCard: React.FC<{
+  recommendedUser: any;
+  navigation: any;
+}> = ({ recommendedUser, navigation }) => {
+  const dispatch = useDispatch();
+  const userSlice = useSelector((state: RootState) => state.users);
   return (
     <View style={styles.recommendedUserCard}>
-      <Image
-        style={styles.profileImg}
-        source={{ uri: recommendedUser.profileImage.path }}
-      />
-      <AppText numberOfLines={1} styles={{ marginVertical: 10, fontSize: 20 }}>
-        {recommendedUser.username}
-      </AppText>
-      <Button>
+      <TouchableOpacity
+        style={{ alignItems: "center" }}
+        onPress={() => {
+          navigation.navigate("User", { userId: recommendedUser._id });
+        }}
+      >
+        <Image
+          style={styles.profileImg}
+          source={{ uri: recommendedUser.profileImage.path }}
+        />
         <AppText
-          styles={{
-            color: colors.primaryColor,
-            fontSize: 20,
-          }}
+          numberOfLines={1}
+          styles={{ marginVertical: 10, fontSize: 20 }}
         >
-          Follow
+          {recommendedUser.username}
         </AppText>
-      </Button>
+      </TouchableOpacity>
+      {userSlice.currentUser.following.find(
+        (followedUser: UserType) => followedUser._id === recommendedUser._id
+      ) ? (
+        <DangerButton
+          onPress={() => handleFollow(recommendedUser._id)(dispatch)}
+        >
+          <AppText
+            styles={{
+              color: colors.dangerColor,
+              fontSize: 20,
+            }}
+          >
+            Unfollow
+          </AppText>
+        </DangerButton>
+      ) : (
+        <Button onPress={() => handleFollow(recommendedUser._id)(dispatch)}>
+          <AppText
+            styles={{
+              color: colors.primaryColor,
+              fontSize: 20,
+            }}
+          >
+            Follow
+          </AppText>
+        </Button>
+      )}
     </View>
   );
 };

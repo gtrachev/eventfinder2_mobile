@@ -1,15 +1,16 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import colors from "../../../styles/colors";
+import { UserType } from "../../../utils/types/modelTypes";
 import AppText from "../../utils/AppText";
 import RecommendedUserCard from "./RecommendedUserCard";
-import { UserType } from "../../../utils/types/modelTypes";
 
-const RecommendedUsers: React.FC<{ recommendedUsers: UserType[] }> = ({
-  recommendedUsers,
-}) => {
+const RecommendedUsers: React.FC<{
+  navigation: any;
+  recommendedUsers: UserType[];
+}> = ({ recommendedUsers, navigation }) => {
   const renderItem = ({ item }: any) => (
-    <RecommendedUserCard key={item._id} recommendedUser={item} />
+    <RecommendedUserCard recommendedUser={item} navigation={navigation} />
   );
 
   return (
@@ -23,6 +24,7 @@ const RecommendedUsers: React.FC<{ recommendedUsers: UserType[] }> = ({
         <FlatList
           data={recommendedUsers}
           renderItem={renderItem}
+          keyExtractor={(item, index) => item._id}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           style={{ marginVertical: 15, marginHorizontal: 10 }}

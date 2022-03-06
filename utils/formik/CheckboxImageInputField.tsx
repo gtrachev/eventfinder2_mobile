@@ -17,9 +17,7 @@ const CheckboxImageInputField: React.FC<
   const [checked, setIsChecked] = useState(isChecked);
   return (
     <View style={{ alignItems: "center", marginBottom: 20 }}>
-      <AppText>
-        <AppText styles={{ fontSize: 18 }}>{label}</AppText>
-      </AppText>
+      <AppText styles={{ fontSize: 18 }}>{label}</AppText>
       <Image source={imgSource} style={styles.interestImg} />
       <CheckBox
         disabled={false}
@@ -54,7 +52,7 @@ const styles = StyleSheet.create({
   interestImg: {
     width: 100,
     height: 100,
-    borderRadius: 50,
+    borderRadius: 20,
     marginVertical: 10,
   },
 });

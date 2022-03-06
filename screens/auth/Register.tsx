@@ -1,23 +1,19 @@
 import {
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import colors from "../../styles/colors";
-import AppText from "../../components/utils/AppText";
-import { Formik, Form, Field } from "formik";
-import Button from "../../styles/styledComponents/Buttons/Button";
-import EventFormInputField from "../../utils/formik/EventFormInputField";
+import { Formik, Field } from "formik";
 import { registerFormikInitialValuesType } from "../../utils/types/formikInitStateTypes";
 import { registerValidationSchema } from "../../utils/formik/yupValidationSchemas";
 import CountryPicker, {
   CountryCode,
   Country,
 } from "react-native-country-picker-modal";
-import InterestCategories from "../../components/forms/InterestCategories";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import { registerUser } from "../../redux/actions/userActions";
@@ -26,6 +22,10 @@ import { useDispatch } from "react-redux";
 import { UserTiersTypes } from "../../utils/types/userTiers";
 import StripeCheckoutForm from "./StripeCheckoutForm";
 import Flash from "../../components/utils/Flash";
+import InterestCategories from "../../components/forms/InterestCategories";
+import Button from "../../styles/styledComponents/Buttons/Button";
+import EventFormInputField from "../../utils/formik/EventFormInputField";
+import AppText from "../../components/utils/AppText";
 
 const Register: React.FC<{
   navigation: any;
@@ -94,7 +94,6 @@ const Register: React.FC<{
             })(dispatch);
             return;
           } catch (err) {
-            window.scrollTo(0, 0);
             dispatch({
               type: uiActionTypes.SET_FLASH,
               payload: { type: "error", message: "Registration failed." },
@@ -292,12 +291,25 @@ const Register: React.FC<{
                         styles={{
                           color: colors.whiteColor,
                           fontSize: 18,
+                          textAlign: "center",
                         }}
                       >
                         Pick image
                       </AppText>
                     </TouchableOpacity>
-                    <ScrollView horizontal={true}></ScrollView>
+                    <ScrollView
+                      horizontal={true}
+                      style={[styles.imagesContainer]}
+                      contentContainerStyle={{
+                        justifyContent: "space-around",
+                        flexDirection: "row",
+                        flexWrap: "wrap",
+                      }}
+                    >
+                      {file ? (
+                        <Image style={styles.image} source={file} />
+                      ) : null}
+                    </ScrollView>
                   </View>
                 </View>
                 <Button
@@ -373,7 +385,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: "solid",
     borderRadius: 10,
-    flexDirection: "row",
     overflow: "hidden",
   },
   imagesInputBtn: {
@@ -383,5 +394,16 @@ const styles = StyleSheet.create({
   error: {
     backgroundColor: "rgba(252, 68, 69, .2)",
     borderColor: colors.dangerColor,
+  },
+  imagesContainer: {
+    padding: 10,
+    borderRadius: 20,
+    maxHeight: 370,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 20,
+    marginVertical: 10,
   },
 });

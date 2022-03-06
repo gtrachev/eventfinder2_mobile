@@ -9,8 +9,9 @@ const EventFormInputField: React.FC<
   FieldProps & {
     label: string;
     type?: string;
+    placeholder?: string;
   }
-> = ({ field, form, label, type, ...props }) => {
+> = ({ field, form, label, type, placeholder, ...props }) => {
   const errMsg = form.touched[field.name] && form.errors[field.name];
 
   return (
@@ -32,7 +33,7 @@ const EventFormInputField: React.FC<
           type === "textarea" ? styles.textarea : {},
           errMsg ? styles.error : {},
         ]}
-        placeholder={`Enter ${field.name}...`}
+        placeholder={placeholder ? placeholder : `Enter ${field.name}...`}
         multiline={type === "textarea" ? true : false}
         numberOfLines={type === "textarea" ? 5 : 1}
         textAlignVertical="top"

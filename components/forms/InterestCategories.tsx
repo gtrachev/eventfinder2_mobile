@@ -1,27 +1,25 @@
 import React from "react";
 import { Field } from "formik";
-import CheckboxImageInputField from "../../utils/formik/CheckboxImageInputField";
-import { Image, View, StyleSheet, ScrollView } from "react-native";
-import AppText from "../utils/AppText";
-import { wrap } from "module";
+import { StyleSheet, ScrollView } from "react-native";
 import colors from "../../styles/colors";
-const artsImage = require("../../assets/interests/artsInterest.png");
-const cookingImage = require("../../assets/interests/cookingInterests.png");
-const diyImage = require("../../assets/interests/diyInterest.png");
-const educationImage = require("../../assets/interests/educationInterest.png");
-const fitnessImage = require("../../assets/interests/fitnessInterest.png");
-const hikingImage = require("../../assets/interests/hikingInterest.png");
-const historyImage = require("../../assets/interests/historyInterest.png");
-const itImage = require("../../assets/interests/itInterest.png");
-const literatureImage = require("../../assets/interests/literatureInterest.png");
-const musicImage = require("../../assets/interests/musicInterest.png");
-const politicsImage = require("../../assets/interests/politicsInterest.png");
-const scienceImage = require("../../assets/interests/scienceInterest.png");
-const sightseeingImage = require("../../assets/interests/sightseeingInterest.png");
-const sportsImage = require("../../assets/interests/sportsInterest.png");
-const technologiesImage = require("../../assets/interests/technologiesInterest.png");
-const travellingImage = require("../../assets/interests/travellingInterest.png");
-const yogaImage = require("../../assets/interests/yogaInterest.png");
+import CheckboxImageInputField from "../../utils/formik/CheckboxImageInputField";
+const artsImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732076/interestImages/artsInterest_yytjms.png`;
+const cookingImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732076/interestImages/cookingInterests_mlt5fu.png`;
+const diyImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732076/interestImages/diyInterest_zlabbw.png`;
+const educationImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732076/interestImages/educationInterest_ednm9p.png`;
+const fitnessImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/fitnessInterest_dezphd.png`;
+const hikingImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/hikingInterest_mid9ys.png`;
+const historyImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/historyInterest_gq3y0b.png`;
+const itImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/itInterest_jazjmz.png`;
+const literatureImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/literatureInterest_vvbfjz.png`;
+const musicImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/musicInterest_x7yrt6.png`;
+const politicsImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/politicsInterest_p9fzpz.png`;
+const scienceImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/scienceInterest_y1uspj.png`;
+const sightseeingImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/sightseeingInterest_j9s8qc.png`;
+const sportsImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732075/interestImages/sportsInterest_lxypaq.png`;
+const technologiesImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732076/interestImages/technologiesInterest_gp1mvz.png`;
+const travellingImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732076/interestImages/travellingInterest_jgcm06.png`;
+const yogaImage = `https://res.cloudinary.com/drrvhe0qk/image/upload/v1645732076/interestImages/yogaInterest_ujrbyk.png`;
 
 const InterestCategories: React.FC<{
   name: string;
@@ -50,7 +48,7 @@ const InterestCategories: React.FC<{
         label="Art"
         isChecked={values && values.find((value: string) => value === "art")}
         component={CheckboxImageInputField}
-        imgSource={artsImage}
+        imgSource={{ uri: artsImage }}
       />
       <Field
         name={name}
@@ -61,7 +59,7 @@ const InterestCategories: React.FC<{
           values && values.find((value: string) => value === "cooking")
         }
         component={CheckboxImageInputField}
-        imgSource={cookingImage}
+        imgSource={{ uri: cookingImage }}
       />
       <Field
         name={name}
@@ -70,7 +68,7 @@ const InterestCategories: React.FC<{
         label="DIY"
         isChecked={values && values.find((value: string) => value === "diy")}
         component={CheckboxImageInputField}
-        imgSource={diyImage}
+        imgSource={{ uri: diyImage }}
       />
       <Field
         name={name}
@@ -81,7 +79,7 @@ const InterestCategories: React.FC<{
           values && values.find((value: string) => value === "education")
         }
         component={CheckboxImageInputField}
-        imgSource={educationImage}
+        imgSource={{ uri: educationImage }}
       />
       <Field
         name={name}
@@ -92,7 +90,7 @@ const InterestCategories: React.FC<{
           values && values.find((value: string) => value === "fitness")
         }
         component={CheckboxImageInputField}
-        imgSource={fitnessImage}
+        imgSource={{ uri: fitnessImage }}
       />
       <Field
         name={name}
@@ -101,7 +99,7 @@ const InterestCategories: React.FC<{
         label="Hiking"
         isChecked={values && values.find((value: string) => value === "hiking")}
         component={CheckboxImageInputField}
-        imgSource={hikingImage}
+        imgSource={{ uri: hikingImage }}
       />
       <Field
         name={name}
@@ -112,7 +110,7 @@ const InterestCategories: React.FC<{
           values && values.find((value: string) => value === "history")
         }
         component={CheckboxImageInputField}
-        imgSource={historyImage}
+        imgSource={{ uri: historyImage }}
       />
       <Field
         name={name}
@@ -121,7 +119,7 @@ const InterestCategories: React.FC<{
         label="IT"
         isChecked={values && values.find((value: string) => value === "it")}
         component={CheckboxImageInputField}
-        imgSource={itImage}
+        imgSource={{ uri: itImage }}
       />
       <Field
         name={name}
@@ -132,7 +130,7 @@ const InterestCategories: React.FC<{
           values && values.find((value: string) => value === "literature")
         }
         component={CheckboxImageInputField}
-        imgSource={literatureImage}
+        imgSource={{ uri: literatureImage }}
       />
       <Field
         name={name}
@@ -141,7 +139,7 @@ const InterestCategories: React.FC<{
         label="Music"
         isChecked={values && values.find((value: string) => value === "music")}
         component={CheckboxImageInputField}
-        imgSource={musicImage}
+        imgSource={{ uri: musicImage }}
       />
       <Field
         name={name}
@@ -152,7 +150,7 @@ const InterestCategories: React.FC<{
           values && values.find((value: string) => value === "politics")
         }
         component={CheckboxImageInputField}
-        imgSource={politicsImage}
+        imgSource={{ uri: politicsImage }}
       />
       <Field
         name={name}
@@ -163,10 +161,8 @@ const InterestCategories: React.FC<{
           values && values.find((value: string) => value === "science")
         }
         component={CheckboxImageInputField}
-        imgSource={artsImage}
-      >
-        <Image source={scienceImage} />
-      </Field>
+        imgSource={{ uri: scienceImage }}
+      />
       <Field
         name={name}
         id="sightseeing"
@@ -176,7 +172,7 @@ const InterestCategories: React.FC<{
           values && values.find((value: string) => value === "sightseeing")
         }
         component={CheckboxImageInputField}
-        imgSource={sightseeingImage}
+        imgSource={{ uri: sightseeingImage }}
       />
       <Field
         name={name}
@@ -185,7 +181,7 @@ const InterestCategories: React.FC<{
         label="Sports"
         isChecked={values && values.find((value: string) => value === "sports")}
         component={CheckboxImageInputField}
-        imgSource={sportsImage}
+        imgSource={{ uri: sportsImage }}
       />
       <Field
         name={name}
@@ -196,7 +192,7 @@ const InterestCategories: React.FC<{
           values && values.find((value: string) => value === "technologies")
         }
         component={CheckboxImageInputField}
-        imgSource={technologiesImage}
+        imgSource={{ uri: technologiesImage }}
       />
       <Field
         name={name}
@@ -207,7 +203,7 @@ const InterestCategories: React.FC<{
           values && values.find((value: string) => value === "travelling")
         }
         component={CheckboxImageInputField}
-        imgSource={travellingImage}
+        imgSource={{ uri: travellingImage }}
       />
       <Field
         name={name}
@@ -216,7 +212,7 @@ const InterestCategories: React.FC<{
         label="Yoga"
         isChecked={values && values.find((value: string) => value === "yoga")}
         component={CheckboxImageInputField}
-        imgSource={yogaImage}
+        imgSource={{ uri: yogaImage }}
       />
     </ScrollView>
   );

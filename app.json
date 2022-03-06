@@ -1,21 +1,20 @@
 {
   "expo": {
     "name": "EventFinder",
+    "description": "An app to discover events happening near you and connect with people with similar interests.",
     "slug": "EventFinder",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logosquarefinal3.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splashlogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },

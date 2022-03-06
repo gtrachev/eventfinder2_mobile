@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import colors from "../styles/colors";
+import { MaterialTopTabNavigationProp } from "@react-navigation/material-top-tabs";
 import IconButton from "../styles/styledComponents/Buttons/IconButton";
 import Icon from "react-native-vector-icons/Feather";
 import AppText from "./utils/AppText";
-import { MaterialTopTabNavigationProp } from "@react-navigation/material-top-tabs";
 
 const Nav: React.FC<{
   navigation: MaterialTopTabNavigationProp<
